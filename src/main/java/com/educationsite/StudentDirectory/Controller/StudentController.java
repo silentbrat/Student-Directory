@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.educationsite.StudentDirectory.POJO.AllocateDTO;
+import com.educationsite.StudentDirectory.POJO.CourseDTO;
 import com.educationsite.StudentDirectory.POJO.StudentDTO;
 import com.educationsite.StudentDirectory.Service.StudentService;
 
@@ -33,25 +35,24 @@ public class StudentController {
 	}
 	
 	@PostMapping("/allocateStudentToCourse")
-	public ResponseEntity<Object> allocateStudentToCourse(@PathVariable("id") Integer courseId,
-			@RequestBody List<Long> studentIdList){
-		return service.allocateStudentToCourse(courseId, studentIdList);
+	public ResponseEntity<Object> allocateStudentWithCourse(@RequestBody AllocateDTO allocateData){
+		return service.allocate(allocateData);
 	}
 	
-	@PostMapping("/updateCoure/{id}")
-	public ResponseEntity<Object> updateCoure(@PathVariable("id") Integer id,
-			@RequestBody List<String> courseList){
-		return service.updateCoure(id, courseList);
+	@PostMapping("/updateCourse/{id}")
+	public ResponseEntity<Object> updateCourse(@PathVariable("id") Long id,
+			@RequestBody List<CourseDTO> courseList){
+		return service.updateCourse(id, courseList,null);
 	}
 	
 	@PutMapping("/delete/{id}")
-	public ResponseEntity<Object> delete(@PathVariable("id") Integer id){
+	public ResponseEntity<Object> delete(@PathVariable("id") Long id){
 		return service.delete(id);
 	}
 	
 	@PostMapping("/register")
 	public ResponseEntity<Object> registerNewStudent(@RequestBody StudentDTO dto){
-		return service.registerNewStudent(dto);
+		return service.registerStudent(dto);
 	}
 
 }
