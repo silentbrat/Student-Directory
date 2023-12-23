@@ -17,8 +17,13 @@ import com.educationsite.StudentDirectory.POJO.CourseDTO;
 import com.educationsite.StudentDirectory.POJO.StudentDTO;
 import com.educationsite.StudentDirectory.Service.StudentService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/api/v1/student")
+@RequiredArgsConstructor
+@Tag(name ="Student")
 public class StudentController {
 	
 	@Autowired
